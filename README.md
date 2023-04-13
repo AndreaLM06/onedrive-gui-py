@@ -1,7 +1,7 @@
 # Onedrive-GUI Python Application
 
 [![fr](https://img.shields.io/badge/lang-fr-blue.svg)](https://github.com/AndreaLM06/onedrive-gui/blob/main/README.fr.md)
-[![GitHub](https://img.shields.io/github/license/YourUsername/onedrive-gui)](https://github.com/AndreaLM06/onedrive-gui/blob/main/LICENSE)
+[![GitHub](https://img.shields.io/github/license/AndreaLM06/onedrive-gui)](https://github.com/AndreaLM06/onedrive-gui/blob/main/LICENSE)
 
 A simple GUI for [Linux OneDrive Client](https://github.com/abraunegg/onedrive).
 
