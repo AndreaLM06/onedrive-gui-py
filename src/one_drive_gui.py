@@ -11,7 +11,7 @@ class OneDriveGUI(QMainWindow):
         self.output = None
         self.setWindowTitle("OneDrive GUI")
         self.init_ui()
-        self.threads = []  # Ajoutez cette ligne pour stocker les threads
+        self.threads = []
 
     def init_ui(self):
         layout = QVBoxLayout()
@@ -24,7 +24,6 @@ class OneDriveGUI(QMainWindow):
         download_only_button.clicked.connect(self.download_only)
         layout.addWidget(download_only_button)
 
-        # Ajoutez des boutons pour les nouvelles commandes
         display_sync_status_button = QPushButton("Display Sync Status")
         display_sync_status_button.clicked.connect(self.display_sync_status)
         layout.addWidget(display_sync_status_button)
