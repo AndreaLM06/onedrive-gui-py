@@ -10,6 +10,10 @@ class SyncThread(QThread):
         self.command = command
 
     def run(self):
+        """
+        Execute la commande de synchronisation OneDrive et emet le signal de sortie a l'aide de Thread.
+        :return:
+        """
         try:
             process = subprocess.Popen(self.command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             while True:

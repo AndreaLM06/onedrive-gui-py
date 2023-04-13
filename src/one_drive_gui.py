@@ -60,10 +60,19 @@ class OneDriveGUI(QMainWindow):
         self.threads = []
 
     def set_language(self, language):
+        """
+        Change la langue de l'interface utilisateur.
+        :param language: La langue selectionnée par l'utilisateur.
+        :return:
+        """
         self.language = language
         self.update_ui()
 
     def update_ui(self):
+        """
+        Met a jour l'interface utilisateur en fonction de la langue selectionnee.
+        :return:
+        """
         tr = self.translations[self.language]
         self.file_menu.setTitle(tr["file_menu"])
         self.sync_button.setText(tr["synchronize"])
@@ -134,9 +143,23 @@ class OneDriveGUI(QMainWindow):
         self.setCentralWidget(container)
 
     def update_output(self, text):
+        """
+        Met à jour la sortie generée par la synchronisation OneDrive.
+
+        :param : text: Texte à ajouter à la sortie.
+
+        :return:
+            Sortie generée par la synchronisation OneDrive.
+        """
         self.output.appendPlainText(text)
 
     def sync(self):
+        """
+        Synchronise OneDrive.
+
+        :return:
+                Synchronisation OneDrive.
+        """
         self.output.appendPlainText("\nSynchronizing OneDrive...")
         sync_thread = SyncThread(["onedrive", "--synchronize"])
         sync_thread.output_signal.connect(self.update_output)
@@ -144,6 +167,12 @@ class OneDriveGUI(QMainWindow):
         self.threads.append(sync_thread)
 
     def download_only(self):
+        """
+        Synchronise OneDrive en téléchargeant uniquement les fichiers.
+
+        :return:
+                Synchronisation OneDrive en téléchargeant uniquement les fichiers.
+        """
         self.output.appendPlainText("\nSynchronizing OneDrive with Download Only...")
         download_only_thread = SyncThread(["onedrive", "--synchronize", "--download-only"])
         download_only_thread.output_signal.connect(self.update_output)
@@ -151,6 +180,12 @@ class OneDriveGUI(QMainWindow):
         self.threads.append(download_only_thread)
 
     def display_sync_status(self):
+        """
+        Affiche le statut de synchronisation OneDrive.
+
+        :return:
+            str: Statut de synchronisation OneDrive.
+        """
         self.output.appendPlainText("\nDisplaying OneDrive sync status...")
         sync_thread = SyncThread(["onedrive", "--display-sync-status"])
         sync_thread.output_signal.connect(self.update_output)
@@ -158,6 +193,15 @@ class OneDriveGUI(QMainWindow):
         self.threads.append(sync_thread)
 
     def create_share_link(self):
+        """
+        Créer un lien de partage OneDrive pour un fichier ou un dossier.
+
+        :param
+            file_name (str): Chemin du fichier ou du dossier.
+
+        :return:
+            str: Lien de partage OneDrive.
+        """
         file_dialog = QFileDialog(self)
         file_dialog.setFileMode(QFileDialog.ExistingFile)  # Pour sélectionner un fichier
         # file_dialog.setFileMode(QFileDialog.Directory)  # Pour sélectionner un dossier
@@ -174,4 +218,10 @@ class OneDriveGUI(QMainWindow):
             self.threads.append(sync_thread)
 
     def clear_output(self):
+        """
+        Efface la sortie.
+
+        :return:
+            None
+        """
         self.output.clear()
